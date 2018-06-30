@@ -27,4 +27,23 @@ describe Bitmap do
     end
   end
 
+  describe "#add" do
+
+    it "should raise an error if 2 arguements are not passed" do
+      expect(lambda { Bitmap.new 5}).to raise_exception ArgumentError
+    end
+
+    it "should raise an error if rows or columns are less than 1" do
+      expect(lambda {Bitmap.new 0, 6}).to raise_exception ArgumentError
+      expect(lambda {Bitmap.new 5, 0}).to raise_exception ArgumentError
+    end
+
+    it "should raise an error if the rows or columns are greater than 250" do
+      expect(lambda {Bitmap.new 256, 6}).to raise_exception ArgumentError
+      expect(lambda {Bitmap.new 5, 300}).to raise_exception ArgumentError
+    end
+
+  end
+
+
 end
