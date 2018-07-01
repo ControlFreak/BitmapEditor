@@ -6,6 +6,7 @@ describe Bitmap do
 
   before :each do
     @bitmap = Bitmap.send(:new)
+    @empty_matrix_with_o = Matrix.build(5,6) {"O"}
   end
 
   describe "#new" do
@@ -18,13 +19,13 @@ describe Bitmap do
 
   describe "#data" do
 
-    it "should return a matrix of size Rows X Columns" do
-      expect(@bitmap.data).to eq({})
+    it "should data as an empty array" do
+      expect(@bitmap.data).to eq([])
     end
 
     it "should return a matrix of size Rows X Columns" do
       @bitmap.add(5,6)
-      expect(@bitmap.data).to eq(Matrix.build(5,6) {"O"})
+      expect(@bitmap.data).to eq(@empty_matrix_with_o)
     end
   end
 
@@ -49,13 +50,13 @@ describe Bitmap do
   describe "#clear" do
 
     before :each do
-      @bitmap = Bitmap.instance.add(5,6, "I")
+      @bitmap = Bitmap.instance
+      @bitmap.add(5,6, "I")
     end
 
     it "should return the same matrix with all elements as zero" do
-      bitmap = Bitmap.instance
-      bitmap.add(5,6, "O")
-      expect(@bitmap.data).to eql? (bitmap.data)
+      @bitmap.clear
+      expect(@bitmap.data).to eq @empty_matrix_with_o
     end
 
   end
