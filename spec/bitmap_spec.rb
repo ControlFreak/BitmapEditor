@@ -59,7 +59,71 @@ describe Bitmap do
       expect(@bitmap.data).to eq @empty_matrix_with_o
     end
 
+    it "should raise exception if data is empty" do
+
+    end
+
   end
 
+  describe "#set_value_at_index" do
+
+    it "should raise the exception if the index in out of bounds" do
+
+    end
+
+    it "should return the value at index as provided" do
+
+    end
+
+    it "should raise exception if data is empty" do
+
+    end
+
+  end
+
+  describe "#draw_vertical_segment" do
+
+    it "should raise exception if either row or column arguements are out of bounds" do
+
+    end
+
+    it "should raise exception if the data is empty" do
+
+    end
+
+    it "should set the values of rows in column" do
+
+    end
+
+  end
+
+  describe "#draw_horizontal_segment" do
+
+    it "should raise exception if either row or column arguements are out of bounds" do
+
+    end
+
+    it "should raise exception if the data is empty" do
+
+    end
+
+    it "should set the values of columns in row" do
+
+    end
+
+  end
+
+
+  describe "#show" do
+
+    it "should raise exception if the data is empty" do
+
+    end
+
+    it "should return the matrix" do
+
+    end
+
+  end
 
 end

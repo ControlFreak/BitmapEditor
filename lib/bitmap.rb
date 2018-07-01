@@ -21,5 +21,4 @@ class Bitmap
   end
 
 
-
 end
