@@ -24,7 +24,7 @@ describe Bitmap do
 
     it "should return a matrix of size Rows X Columns" do
       @bitmap.add(5,6)
-      expect(@bitmap.data).to eq(Matrix.build(5,6) {"O"})
+      expect(@bitmap.data).to eq(Array.new( 5, Array.new(6, 0) ))
     end
   end
 
@@ -45,6 +45,8 @@ describe Bitmap do
     end
 
   end
+
+  describe
 
 
 end
