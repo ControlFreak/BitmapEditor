@@ -67,18 +67,18 @@ describe Bitmap do
 
   describe "#set_value_at_index" do
 
+    it "should raise exception if data is empty" do
+      expect(@bitmap.set_value_at_index("C", 4, 3)).to raise_exception StandardError
+    end
+
     it "should raise the exception if the index in out of bounds" do
       expect(lambda {Bitmap.instance.set_value_at_index("C", 7, 8) }).to raise_exception StandardError
     end
 
-    it "should raise exception if data is empty" do
-      @bitmap = Bitmap.send(:new)
-      expect(@bitmap.set_value_at_index("C", 4, 3)).to raise_exception StandardError
-    end
-
     it "should return the value at index as provided" do
+      @bitmap.add(5,6)
       @bitmap.set_value_at_index("C", 4, 3)
-      expect(@bitmap.send(:[], 4, 3)).to eq("C")
+      expect(@bitmap.data.send(:[], 4, 3)).to eq("C")
     end
 
   end

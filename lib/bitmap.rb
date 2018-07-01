@@ -20,5 +20,11 @@ class Bitmap
     @data = Matrix.build(self.data.row_count, self.data.column_count) {"O"}
   end
 
+  def set_value_at_index value, row_index, column_index
+    raise StandardError if self.data.empty?
+    raise StandardError if 1 > row_index  && row_index > self.data.row_count || 1 > column_index && column_index > self.data.column_count
+    self.data.send(:[]=, row_index, column_index, value)
+  end
+
 
 end
