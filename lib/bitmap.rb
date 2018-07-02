@@ -23,7 +23,7 @@ class Bitmap
   def set_value_at_index value, row_index, column_index
     raise ArgumentError.new("rows and columns should be greater than 0") if self.data == []
     raise StandardError if 1 >= row_index  && row_index > self.data.row_count || 1 >= column_index && column_index > self.data.column_count
-    self.data.send(:[]=, row_index-1, column_index-1, value)
+    Bitmap.instance.data.send(:[]=, row_index-1, column_index-1, value)
   end
 
   def draw_vertical_segment value, column, row_from, row_to
