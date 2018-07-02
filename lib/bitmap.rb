@@ -21,9 +21,28 @@ class Bitmap
   end
 
   def set_value_at_index value, row_index, column_index
-    raise StandardError if self.data.empty?
-    raise StandardError if 1 > row_index  && row_index > self.data.row_count || 1 > column_index && column_index > self.data.column_count
-    self.data.send(:[]=, row_index, column_index, value)
+    raise ArgumentError.new("rows and columns should be greater than 0") if self.data == []
+    raise StandardError if 1 >= row_index  && row_index > self.data.row_count || 1 >= column_index && column_index > self.data.column_count
+    self.data.send(:[]=, row_index-1, column_index-1, value)
+  end
+
+  def draw_vertical_segment value, column, row_from, row_to
+    raise ArgumentError.new("rows and columns should be greater than 0") if self.data == []
+    raise StandardError if 1 >= column  && column > self.data.column_count || 1 >= row_from && row_from > self.data.row_count || 1 >= row_to && row_to > self.data.row_count
+    (row_from..row_to).each {|row| self.data.send(:[]=, row-1, column-1, value) }
+  end
+
+  def draw_horizontal_segment value, column_from, column_to, row
+    raise ArgumentError.new("rows and columns should be greater than 0") if self.data == []
+    raise StandardError if 1 >= column_from  && column_from > self.data.column_count || 1 >= column_to && column_to > self.data.column_count || 1 >= row && row > self.data.row_count
+    (column_from..column_to).each {|column| self.data.send(:[]=, row-1, column-1, value) }
+  end
+
+  def show
+    raise ArgumentError.new("rows and columns should be greater than 0") if self.data == []
+    (0...self.data.row_count).each do |i|
+      puts self.data.row(i).to_a.join
+    end
   end
 
 
