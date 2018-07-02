@@ -68,19 +68,20 @@ describe Bitmap do
 
   describe "#set_value_at_index" do
 
+    let (:bitmap) {Singleton.__init__(Bitmap).instance}
+
     it "should raise exception if data is empty" do
-      bitmap = Singleton.__init__(Bitmap).instance
       expect(lambda {bitmap.set_value_at_index("C", 4, 3)}).to raise_exception ArgumentError
     end
 
     it "should raise the exception if the index in out of bounds" do
-      expect(lambda {Bitmap.instance.set_value_at_index("C", 7, 8) }).to raise_exception StandardError
+      expect(lambda {Bitmap.instance.set_value_at_index("C", 7, 8) }).to raise_exception ArgumentError
     end
 
     it "should return the value at index as provided" do
-      @bitmap.add(5,6)
-      @bitmap.set_value_at_index("C", 4, 3)
-      expect(@bitmap.data.send(:[], 3, 2)).to eq("C")
+      bitmap.add(5,6)
+      bitmap.set_value_at_index("C", 4, 3)
+      expect(bitmap.data.send(:[], 3, 2)).to eq("C")
     end
 
   end
@@ -95,7 +96,7 @@ describe Bitmap do
 
     it "should raise exception if either row or column arguements are out of bounds" do
       bitmap.add(5,6)
-      expect(lambda {bitmap.draw_vertical_segment("C", 7, 8, 9) }).to raise_exception StandardError
+      expect(lambda {bitmap.draw_vertical_segment("C", 7, 8, 9) }).to raise_exception ArgumentError
     end
 
     it "should set the values of rows in column" do
@@ -116,7 +117,7 @@ describe Bitmap do
 
     it "should raise exception if the data is empty" do
       bitmap.add(5,6)
-      expect(lambda {bitmap.draw_horizontal_segment("C", 7, 8, 9) }).to raise_exception StandardError
+      expect(lambda {bitmap.draw_horizontal_segment("C", 7, 8, 9) }).to raise_exception ArgumentError
     end
 
     it "should set the values of columns in row" do
